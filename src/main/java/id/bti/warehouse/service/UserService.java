@@ -1,5 +1,6 @@
 package id.bti.warehouse.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +18,19 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> getAllUser() {
-        return userRepository.findAll();
+    public List<UserResponse> getAllUser() {
+        List<User> users = userRepository.findAll();
+
+        List<UserResponse> tempUsers = new ArrayList<>();
+
+        for (User user : users) {
+            UserResponse response = new UserResponse(
+                    user.getId(), user.getFullName(), user.getEmail(), user.getRole());
+
+            tempUsers.add(response);
+        }
+
+        return tempUsers;
     }
 
     public UserResponse saveUser(UserRequest userRequest) {
