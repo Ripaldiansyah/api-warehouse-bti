@@ -96,4 +96,13 @@ public class UserService {
         return response;
     }
 
+    public void deleteById(String id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isEmpty()) {
+            throw new RuntimeException("User tidak ditemukan");
+        }
+
+        userRepository.deleteById(id);
+    }
 }
