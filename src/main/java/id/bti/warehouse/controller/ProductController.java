@@ -27,7 +27,7 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<Product>> getProduct() {
         List<Product> products = productService.getProduct();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(products);
+        return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
     @PostMapping
