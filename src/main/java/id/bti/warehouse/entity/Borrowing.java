@@ -37,10 +37,7 @@ public class Borrowing {
     @JoinColumn(name = "product_id")
     private Product product;
     private Integer quantity;
-    @JoinColumn(name = "initial_quantity")
-    private Integer initialQuantity;
     private String status;
-    private LocalDateTime borrowedAt;
-    private LocalDateTime returnedAt;
+    private LocalDateTime modifiedDate;
 
 }
