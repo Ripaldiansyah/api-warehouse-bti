@@ -1,7 +1,6 @@
 package id.bti.warehouse.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import lombok.Setter;
 public class UserRequest {
 
     private String id;
-    @JsonProperty("full_name")
+    @Column(name = "full_name")
     private String fullName;
     private String email;
     private String role;

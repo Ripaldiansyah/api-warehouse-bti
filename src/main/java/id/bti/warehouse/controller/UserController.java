@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(allUser);
     }
 
-    @GetMapping("/get-borrow")
+    @GetMapping("/detail")
     public ResponseEntity<List<User>> getUserAndBorrow() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.detailUser());
     }

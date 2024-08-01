@@ -1,7 +1,6 @@
 package id.bti.warehouse.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserResponse {
     private String id;
-    @JsonProperty("full_name")
+    @Column(name = "full_name")
     private String fullName;
     private String email;
     private String role;
