@@ -3,6 +3,7 @@ package id.bti.warehouse.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String name;
+
+    @JsonProperty("full_name")
+    private String fullName;
+    private String email;
     private String role;
 
     @OneToMany(mappedBy = "user")
