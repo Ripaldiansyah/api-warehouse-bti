@@ -33,6 +33,10 @@ public class UserService {
         return tempUsers;
     }
 
+    public List<User> detailUser() {
+        return userRepository.findAll();
+    }
+
     public UserResponse saveUser(UserRequest userRequest) {
         Optional<User> userOpt = userRepository.findByEmail(userRequest.getEmail());
 

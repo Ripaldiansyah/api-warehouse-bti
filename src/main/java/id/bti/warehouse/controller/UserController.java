@@ -32,6 +32,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(allUser);
     }
 
+    @GetMapping("/get-borrow")
+    public ResponseEntity<List<User>> getUserAndBorrow() {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.detailUser());
+    }
+
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody UserRequest request) {
         UserResponse response;
