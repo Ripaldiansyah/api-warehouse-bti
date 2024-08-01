@@ -61,4 +61,39 @@ public class UserService {
         return response;
     }
 
+    public UserResponse editUser(UserRequest request) {
+        Optional<User> userOpt = userRepository.findById(request.getId());
+
+        if (userOpt.isEmpty()) {
+            throw new RuntimeException("ID Tidak ditemukan");
+        }
+
+        Optional<User> emailOpt = userRepository.findByEmail(request.getEmail());
+
+        if (!emailOpt.isEmpty() && !userOpt.get().getEmail().equalsIgnoreCase(request.getEmail())) {
+            throw new RuntimeException("Email telah terdaftar");
+        }
+
+        if (!request.getEmail().contains("@")) {
+            throw new RuntimeException("Email tidak valid");
+        }
+
+        User user = new User(
+                request.getId(),
+                request.getFullName(),
+                request.getEmail(),
+                request.getRole(),
+                null);
+
+        user = userRepository.save(user);
+
+        UserResponse response = new UserResponse(
+                user.getId(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getRole());
+
+        return response;
+    }
+
 }
