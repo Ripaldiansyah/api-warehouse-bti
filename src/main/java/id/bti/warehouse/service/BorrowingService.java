@@ -2,6 +2,8 @@ package id.bti.warehouse.service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,23 @@ public class BorrowingService {
         }
 
         return createBorrowingResponse(user, product, request);
+    }
+
+    public List<BorrowingResponse> getAllBorrowing() {
+
+        List<Borrowing> borrows = borrowingRepository.findAll();
+        List<BorrowingResponse> response = new ArrayList<>();
+        for (Borrowing borrowing : borrows) {
+            BorrowingResponse borrow = new BorrowingResponse(
+                    borrowing.getUser().getFullName(),
+                    borrowing.getProduct().getName(),
+                    borrowing.getQuantity(),
+                    borrowing.getStatus());
+
+            response.add(borrow);
+        }
+
+        return response;
     }
 
     private void validateProductStock(BorrowingRequest request, Product product) {
